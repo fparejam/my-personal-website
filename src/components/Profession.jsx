@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "../styles/Profession.module.css";
 
 const Profession = () => {
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -7,11 +8,10 @@ const Profession = () => {
   const [isHovering, setIsHovering] = useState(false);
 
   const shuffleText = () => {
-    let iteration = 0;
-  
-    clearInterval(interval);
-  
     const newText = isHovering ? "SOFTWARE ENGINEER" : "ML ENGINEER";
+    let iteration = 0;
+
+    clearInterval(interval);
 
     interval = setInterval(() => {
       setText(
@@ -25,16 +25,15 @@ const Profession = () => {
           })
           .join("")
       );
-      
-    if (iteration >= newText.length){ 
+
+    if (iteration >= newText.length){
       clearInterval(interval);
       setIsHovering(!isHovering);
     }
-    
+
     iteration += 1 / 3;
   }, 20);
 };
-
 
   const resetText = () => {
     clearInterval(interval);
@@ -51,11 +50,14 @@ const Profession = () => {
   };
 
   return (
-    <span onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+    <span
+      className={styles.profession}
+      onMouseOver={handleMouseOver}
+      onMouseOut={handleMouseOut}
+    >
       {text}
     </span>
   );
 };
 
 export default Profession;
-  
