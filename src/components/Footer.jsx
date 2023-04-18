@@ -2,14 +2,14 @@ import React from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import styles from "../styles/Footer.module.css";
 
-const Footer = () => {
+const Footer = ({ darkMode }) => {
   return (
     <div className={styles.container}>
       <a href="https://www.linkedin.com/in/fernando-pareja-mayo-1743561a3/" target="_blank" rel="noreferrer">
-        <FaLinkedin className={styles.icon} />
+        <FaLinkedin className={darkMode ? styles.iconDark : styles.icon} />
       </a>
       <a href="https://github.com/fparejam" target="_blank" rel="noreferrer">
-        <FaGithub className={styles.icon} />
+        <FaGithub className={darkMode ? styles.iconDark : styles.icon} />
       </a>
     </div>
   );

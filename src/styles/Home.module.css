@@ -1,5 +1,4 @@
 .container {
-  background-color: white;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -9,15 +8,36 @@
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.title {
+.title,
+.subtitle {
   text-align: center;
   margin-bottom: 0;
-  color: #333;
 }
 
 .subtitle {
-  text-align: center;
-  margin-top: 0;
   font-size: 3rem;
-  color: #333;
+}
+
+div.theme-switch__container {
+  position: absolute;
+  top: 6rem;
+  right: 5%;
+}
+
+.light {
+  background-color: white;
+}
+
+.light .title,
+.light .subtitle {
+  color: #000000;
+}
+
+.dark {
+  background-color: #000000;
+}
+
+.dark .title,
+.dark .subtitle {
+  color: white;
 }
