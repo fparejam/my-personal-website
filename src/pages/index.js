@@ -13,7 +13,7 @@ const HomePage = () => {
         <ThemeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
       </div>
       <ProfilePicture />
-      <h1 className={darkMode ? styles.titleDark : styles.title}>Hi! I&apos;m Fernando Pareja. I&apos;m a </h1>
+      <h1 className={styles.title}>Hi! I&apos;m Fernando Pareja. I&apos;m a </h1>
       <h2 className={styles.subtitle}><Profession/></h2>
       <Footer darkMode={darkMode} />
     </div>
