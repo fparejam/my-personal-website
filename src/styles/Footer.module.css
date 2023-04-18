@@ -1,18 +1,28 @@
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 2rem;
-  }
-  
-  .icon {
-    font-size: 2rem;
-    margin: 0 1rem;
-    cursor: pointer;
-    color: gray;
-  }
-  
-  .icon:hover {
-    color: black;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.icon {
+  font-size: 2rem;
+  margin: 0 1rem;
+  cursor: pointer;
+  color: gray;
+}
+
+.icon:hover {
+  color: black;
+}
+
+.iconDark {
+  font-size: 2rem;
+  margin: 0 1rem;
+  cursor: pointer;
+  color: lightgray;
+}
+
+.iconDark:hover {
+  color: white;
+}
