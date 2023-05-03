@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styles from "../styles/ProfilePicture.module.css";
-import my_photo from "../../public/personal_image.jpg";
+import my_photo from "../../public/50percent.jpg";
 
 const ProfilePicture = () => {
   return (
