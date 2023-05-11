@@ -5,7 +5,7 @@ import styles from "../styles/Footer.module.css";
 const Footer = ({ darkMode }) => {
   return (
     <div className={styles.container}>
-      <a href="https://www.linkedin.com/in/fernando-pareja-mayo-1743561a3/" target="_blank" rel="noreferrer">
+      <a href="https://www.linkedin.com/in/fparejam" target="_blank" rel="noreferrer">
         <FaLinkedin className={darkMode ? styles.iconDark : styles.icon} />
       </a>
       <a href="https://github.com/fparejam" target="_blank" rel="noreferrer">
