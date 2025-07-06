@@ -1,53 +1,65 @@
-import { useState } from "react";
+import { useState, useCallback, useEffect } from "react";
 import styles from "../styles/Profession.module.css";
 
+const PROFESSIONS = {
+  primary: "SOFTWARE ENGINEER",
+  secondary: "AI ENGINEER",
+};
+
+const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const ANIMATION_INTERVAL = 20;
+
 const Profession = () => {
-  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  const [text, setText] = useState("SOFTWARE ENGINEER");
-  let interval = null;
+  const [text, setText] = useState(PROFESSIONS.primary);
   const [isHovering, setIsHovering] = useState(false);
 
-  const shuffleText = () => {
-    const newText = isHovering ? "SOFTWARE ENGINEER" : "ML ENGINEER";
+  const getCurrentProfession = useCallback(() => {
+    return isHovering ? PROFESSIONS.secondary : PROFESSIONS.primary;
+  }, [isHovering]);
+
+  const shuffleText = useCallback(() => {
+    const targetText = getCurrentProfession();
     let iteration = 0;
 
-    clearInterval(interval);
-
-    interval = setInterval(() => {
+    const intervalId = setInterval(() => {
       setText(
-        newText
+        targetText
           .split("")
           .map((letter, index) => {
             if (index < iteration) {
-              return newText[index];
+              return targetText[index];
             }
-            return letters[Math.floor(Math.random() * 26)];
+            return LETTERS[Math.floor(Math.random() * LETTERS.length)];
           })
           .join("")
       );
 
-    if (iteration >= newText.length){
-      clearInterval(interval);
-      setIsHovering(!isHovering);
-    }
+      if (iteration >= targetText.length) {
+        clearInterval(intervalId);
+        setIsHovering(!isHovering);
+      }
 
-    iteration += 1 / 3;
-  }, 20);
-};
+      iteration += 1 / 2;
+    }, ANIMATION_INTERVAL);
 
-  const resetText = () => {
-    clearInterval(interval);
-    const newText = isHovering ? "ML ENGINEER" : "SOFTWARE ENGINEER";
-    setText(newText);
-  };
+    return intervalId;
+  }, [isHovering]);
 
-  const handleMouseOver = () => {
+  const handleMouseOver = useCallback(() => {
     shuffleText();
-  };
+  }, [shuffleText]);
 
-  const handleMouseOut = () => {
-    resetText();
-  };
+  const handleMouseOut = useCallback(() => {
+    setText(getCurrentProfession());
+  }, [getCurrentProfession]);
+
+  // Cleanup interval on unmount
+  useEffect(() => {
+    return () => {
+      const intervalId = shuffleText();
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, [shuffleText]);
 
   return (
     <span
