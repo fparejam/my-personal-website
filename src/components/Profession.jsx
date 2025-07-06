@@ -39,7 +39,7 @@ const Profession = () => {
         setIsHovering(!isHovering);
       }
 
-      iteration += 1 / 3;
+      iteration += 1 / 2;
     }, ANIMATION_INTERVAL);
 
     return intervalId;
