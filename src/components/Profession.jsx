@@ -13,12 +13,12 @@ const Profession = () => {
   const [text, setText] = useState(PROFESSIONS.primary);
   const [isHovering, setIsHovering] = useState(false);
 
-  const getCurrentProfession = useCallback(() => {
-    return isHovering ? PROFESSIONS.secondary : PROFESSIONS.primary;
+  const getTargetProfession = useCallback(() => {
+    return !isHovering ? PROFESSIONS.secondary : PROFESSIONS.primary;
   }, [isHovering]);
 
   const shuffleText = useCallback(() => {
-    const targetText = getCurrentProfession();
+    const targetText = getTargetProfession();
     let iteration = 0;
 
     const intervalId = setInterval(() => {
@@ -43,15 +43,15 @@ const Profession = () => {
     }, ANIMATION_INTERVAL);
 
     return intervalId;
-  }, [isHovering]);
+  }, [isHovering, getTargetProfession]);
 
   const handleMouseOver = useCallback(() => {
     shuffleText();
   }, [shuffleText]);
 
   const handleMouseOut = useCallback(() => {
-    setText(getCurrentProfession());
-  }, [getCurrentProfession]);
+    setText(getTargetProfession());
+  }, [getTargetProfession]);
 
   // Cleanup interval on unmount
   useEffect(() => {
